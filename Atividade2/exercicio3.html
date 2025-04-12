@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Exibir livro pelo ID</title>
+</head>
+<body>
+    <h1>Exercício 3 - Selecione o livro</h1>
+    <label for="livro_id">Digite o ID do livro (de 1 a 6)</label>
+    <input type="number" id="livro_id" min="1" max="6">
+    <button onclick="buscarLivro()">Buscar</button>
+    <div id="livro_selecionado"></div>
+
+    <script>
+        let xmlDoc;
+        fetch('livraria.xml')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status} ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                xmlDoc = parser.parseFromString(data, 'text/xml');
+                // Verifica erros de parseamento
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Erro ao parsear o XML');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao carregar o XML:', error);
+                document.getElementById('livro_selecionado').innerHTML = 
+                    `<p>Erro ao carregar o XML: ${error.message}</p>`;
+            });
+
+        function buscarLivro(){
+            const idLivro = document.getElementById('livro_id').value;
+            const div = document.getElementById('livro_selecionado');
+            div.innerHTML = '';
+            if(!xmlDoc){
+                div.innerHTML = '<p>ERRO ao carregar o documento xml!</p>';
+                return;
+            }
+            //Buscar o livro correspondente
+            const livros = xmlDoc.getElementsByTagName('livro');
+            let livroEncontrado = null;
+            for(let i = 0; i<livros.length; i++){
+                if(livros[i].getAttribute('id') === idLivro){
+                    livroEncontrado = livros[i];
+                    break;
+                }
+            }
+            if(livroEncontrado){
+                const id = livroEncontrado.getAttribute('id');
+                const titulo = livroEncontrado.getElementsByTagName('titulo')[0].textContent;
+                const autores = livroEncontrado.getElementsByTagName('autores')[0].getElementsByTagName('autor');
+                const ano = livroEncontrado.getElementsByTagName('ano')[0].textContent;
+                let autoresTexto = Array.from(autores).map(autor => autor.textContent).join(', ');
+
+                const p = document.createElement('p');
+                p.textContent = `ID: ${id}, Título: ${titulo}, Autores: ${autoresTexto}, Ano: ${ano}`;
+                div.appendChild(p);
+            }else{
+                const p = document.createElement('p');
+                p.textContent = `Nenhum livro encontrado com o ID ${idLivro}`;
+                div.appendChild(p);
+            }
+        }
+    </script>
+</body>
+</html>
