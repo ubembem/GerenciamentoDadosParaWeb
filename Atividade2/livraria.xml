@@ -1,0 +1,45 @@
+<livraria>
+	<livro id="1">
+		<titulo>O Pequeno Príncipe</titulo>
+		<autores>
+			<autor>Antoine de Saint-Exupéry</autor>
+		</autores>
+		<ano>1943</ano>
+	</livro>
+	<livro id="2">
+		<titulo>Dom Quixote</titulo>
+		<autores>
+			<autor>Miguel de Cervantes</autor>
+		</autores>
+		<ano>1605</ano>
+	</livro>
+	<livro id="3">
+		<titulo>1984</titulo>
+		<autores>
+			<autor>George Orwell</autor>
+		</autores>
+		<ano>1949</ano>
+	</livro>
+	<livro id="4">
+		<titulo>Sapiens – uma breve história da humanidade</titulo>
+		<autores>
+			<autor>Yuval Noah Harari</autor>
+		</autores>
+		<ano>2015</ano>
+	</livro>
+	<livro id="5">
+		<titulo>1984</titulo>
+		<autores>
+			<autor>George Orwell</autor>
+		</autores>
+		<ano>1949</ano>
+	</livro>
+	<livro id="6">
+		<titulo>JAVA Como programar</titulo>
+		<autores>
+			<autor>Paul Deitel</autor>
+			<autor>Harvey Deitel</autor>
+		</autores>
+		<ano>2016</ano>
+	</livro>
+</livraria>

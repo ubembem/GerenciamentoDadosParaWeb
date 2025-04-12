@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Exibir Títulos</title>
+</head>
+<body>
+    <h1>Exercício 1 - Títulos dos Livros</h1>
+    <div id="titulos"></div>
+
+    <script>
+        // Carregar o arquivo livros.xml
+        fetch('livraria.xml')
+            .then(response => response.text())
+            .then(data => {
+                // Parsear o XML
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+
+                // Acessar todos os elementos <titulo>
+                const titulos = xmlDoc.getElementsByTagName('titulo');
+
+                // Iterar sobre os títulos e exibir na div
+                const divTitulos = document.getElementById('titulos');
+                for (let i = 0; i < titulos.length; i++) {
+                    const p = document.createElement('p');
+                    p.textContent = titulos[i].textContent;
+                    divTitulos.appendChild(p);
+                }
+            })
+            .catch(error => console.error('Erro ao carregar o XML:', error));
+    </script>
+</body>
+</html>
