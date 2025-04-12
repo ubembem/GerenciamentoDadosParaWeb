@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício 1 - Exibir Títulos</title>
+    <title>Exercício 2 - Exibir Autores e ano</title>
 </head>
 <body>
-    <h1>Exercício 1 - Títulos dos Livros</h1>
-    <div id="titulos"></div>
+    <h1>Exercício 2 - Autores e ano</h1>
+    <div id="autores_ano"></div>
 
     <script>
-        // Carregar o arquivo livros.xml
         fetch('livraria.xml')
             .then(response => response.text())
             .then(data => {
-                // Parsear o XML
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(data, 'text/xml');
+                const div = document.getElementById('autores_ano')
 
-                // Acessar todos os elementos <titulo>
-                const titulos = xmlDoc.getElementsByTagName('titulo');
-
-                // Iterar sobre os títulos e exibir na div
-                const divTitulos = document.getElementById('titulos');
-                for (let i = 0; i < titulos.length; i++) {
+                // Acessar todos os elementos <livros>
+                const livros = xmlDoc.getElementsByTagName('livro');
+                
+                for (let i = 0; i < livros.length; i++) {
+                    const autores = livros[i].getElementsByTagName('autores')[0].getElementsByTagName('autor');
+                    const ano = livros[i].getElementsByTagName('ano')[0].textContent;
+                    let autoresTexto = Array.from(autores).map(autor => autor.textContent).join(', ');
+                    
                     const p = document.createElement('p');
-                    p.textContent = titulos[i].textContent;
-                    divTitulos.appendChild(p);
+                    p.textContent = `Autores: ${autoresTexto}, Ano: ${ano}`;
+                    div.appendChild(p)
                 }
             })
             .catch(error => console.error('Erro ao carregar o XML:', error));
