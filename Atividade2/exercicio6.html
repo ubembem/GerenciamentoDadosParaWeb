@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6 - Navegação</title>
+</head>
+<body>
+    <h1>Exercício 6 - Título do Segundo Livro</h1>
+    <div id="navegacao"></div>
+
+    <script>
+        fetch('livraria.xml')
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Erro ao parsear o XML');
+                }
+
+                const segundoLivro = xmlDoc.getElementsByTagName('livro')[1];
+                const autores = segundoLivro.getElementsByTagName('autores')[0];
+                const autor = autores.firstChild.nextSibling;
+                const livro = autor.parentNode.parentNode;
+                const titulo = livro.firstChild.nextSibling;
+                const tituloTexto = titulo.firstChild.nodeValue;
+
+                const div = document.getElementById('navegacao');
+                const p = document.createElement('p');
+                p.textContent = tituloTexto;
+                div.appendChild(p);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('navegacao').innerHTML = 
+                    `<p>Erro: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>

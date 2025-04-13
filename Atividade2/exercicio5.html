@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5 - Último Ano</title>
+</head>
+<body>
+    <h1>Exercício 5 - Ano do Último Livro</h1>
+    <div id="ultimo_ano"></div>
+
+    <script>
+        fetch('livraria.xml')
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Erro ao parsear o XML');
+                }
+
+                const livros = xmlDoc.getElementsByTagName('livro');
+                const ultimoLivro = livros[livros.length -1];
+                const ano = ultimoLivro.lastChild.previousSibling;
+                const anoTexto = ano.firstChild.nodeValue;
+
+                const div = document.getElementById('ultimo_ano');
+                const p = document.createElement('p');
+                p.textContent = anoTexto;
+                div.appendChild(p);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('ultimo_ano').innerHTML = 
+                    `<p>Erro: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>

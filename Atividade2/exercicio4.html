@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 4 - Primeiro Autor</title>
+</head>
+<body>
+    <h1>Exercício 4 - Primeiro Autor do Primeiro Livro</h1>
+    <div id="primeiro_autor"></div>
+
+    <script>
+        fetch('livraria.xml')
+            .then(response => {
+                if(!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const parse = new DOMParser;
+                const xmlDoc = parse.parseFromString(data, 'text/xml');
+                if(xmlDoc.getElementsByTagName('parsererror').length > 0){
+                    throw new Error('Error ao parsear xml!');
+                }
+
+                const livro  = xmlDoc.getElementsByTagName('livro')[0];
+                const titulo = livro.firstChild.nextSibling;
+                const autores = titulo.nextSibling.nextSibling;
+                const autor = autores.firstChild.nextSibling;
+                const autorTexto = autor.firstChild.nodeValue;
+
+                const div = document.getElementById('primeiro_autor');
+                const p = document.createElement('p');
+                p.textContent = autorTexto;
+                div.appendChild(p);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('primeiro_autor').innerHTML = `<p>Erro: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
