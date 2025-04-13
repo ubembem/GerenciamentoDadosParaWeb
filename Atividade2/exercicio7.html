@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7 - Todos os IDs</title>
+</head>
+<body>
+    <h1>Exercício 7 - IDs dos Livros</h1>
+    <div id="ids"></div>
+
+    <script>
+        fetch('livraria.xml')
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Erro ao parsear o XML');
+                }
+
+                const livros = xmlDoc.getElementsByTagName('livro');
+                const div = document.getElementById('ids');
+
+                for (let i = 0; i < livros.length; i++) {
+                    const idNode = livros[i].getAttributeNode('id');
+                    const id = idNode.nodeValue;
+                    const p = document.createElement('p');
+                    p.textContent = id;
+                    div.appendChild(p);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('ids').innerHTML = 
+                    `<p>Erro: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
