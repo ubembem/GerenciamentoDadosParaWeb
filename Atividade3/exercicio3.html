@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3 - Iteração sobre Nós Filhos</title>
+</head>
+<body>
+    <h1>Exercício 3 - Iteração sobre Nós Filhos</h1>
+    <div id="conteudo"></div>
+
+    <script>
+        fetch('livraria.xml')
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, 'text/xml');
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Erro ao parsear o XML');
+                }
+
+                const livros = xmlDoc.documentElement;
+                const filhos = livros.childNodes;
+                const div = document.getElementById('conteudo');
+                for (let index = 0; index < filhos.length; index++) {
+                    if(filhos[index].nodeType === 1){
+                        
+                        const p = document.createElement('p');
+                        p.textContent = filhos[index].nodeName;
+                        div.appendChild(p);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                document.getElementById('conteudo').innerHTML = 
+                    `<p>Erro: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
