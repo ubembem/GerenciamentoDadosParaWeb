@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmes</title>
+</head>
+<body>
+    <h1>Lista de filmes após remover o segundo filme</h1>
+    <div id="lista-titulos-filmes"></div>
+    <script>
+        function loadXMLDoc() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "filmes.xml", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const xmlDoc = xhr.responseXML;
+                    const filmes = xmlDoc.getElementsByTagName("filme");
+                    for (let i = 0; i < filmes.length; i++) {
+                        if (filmes[i].getAttribute("id") === "F002") {
+                            filmes[i].parentNode.removeChild(filmes[i]);
+                            break;
+                        }
+                    }
+                    const titulos = xmlDoc.getElementsByTagName("titulo");
+                    const ul = document.createElement("ul");
+                    for (let i = 0; i < titulos.length; i++) {
+                        const li = document.createElement("li");
+                        li.textContent = titulos[i].textContent;
+                        ul.appendChild(li);
+                    }
+                    document.getElementById("lista-titulos-filmes").appendChild(ul);
+                }
+            };
+            xhr.send();
+        }
+        window.onload = loadXMLDoc;
+  </script>
+</body>
+</html>

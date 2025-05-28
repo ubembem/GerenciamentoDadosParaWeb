@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmes</title>
+</head>
+<body>
+    <h1>Lista de filmes após adicionar um novo filme</h1>
+    <div id="lista-titulos-filmes"></div>
+  <script>
+        
+        function loadXMLDoc() {
+            const xhr = new XMLHttpRequest();
+            //teste aqui
+            
+            xhr.open("GET", "filmes.xml", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const xmlDoc = xhr.responseXML;
+                    //criar e adicionar o filme no xml
+                    const novoFilme = xmlDoc.createElement("filme");
+                    novoFilme.setAttribute("id", "F004");
+                    const titulo = xmlDoc.createElement("titulo");
+                    titulo.appendChild(xmlDoc.createTextNode("Matrix"));
+                    const diretor = xmlDoc.createElement("diretor");
+                    diretor.appendChild(xmlDoc.createTextNode("Wachowski"));
+                    const ano = xmlDoc.createElement("ano");
+                    ano.appendChild(xmlDoc.createTextNode("1999"));
+                    const genero = xmlDoc.createElement("genero");
+                    genero.appendChild(xmlDoc.createTextNode("Ficção Científica"));
+                    novoFilme.appendChild(titulo);
+                    novoFilme.appendChild(diretor);
+                    novoFilme.appendChild(ano);
+                    novoFilme.appendChild(genero);
+                    xmlDoc.getElementsByTagName("filmes")[0].appendChild(novoFilme);
+                    //mostrar os filmes
+                    const titulos = xmlDoc.getElementsByTagName("titulo");
+                    const ul = document.createElement("ul");
+                    for (let i = 0; i < titulos.length; i++) {
+                        const li = document.createElement("li");
+                        li.textContent = titulos[i].textContent;
+                        ul.appendChild(li);
+                    }
+                    document.getElementById("lista-titulos-filmes").appendChild(ul);
+                }
+            };
+            xhr.send();
+        }
+        window.onload = loadXMLDoc;
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste JSON</title>
+</head>
+<body>
+  <h1>Verifique o console (F12)</h1>
+
+  <script>
+
+    const livroJSON = {
+      "titulo": "Dom Casmurro",
+      "autor": "Machado de Assis",
+      "numeroPaginas": 256,
+      "anoPublicacao": 1899
+    };
+
+    console.log("Título antes da conversão:", livroJSON.titulo);
+
+    const livroString = JSON.stringify(livroJSON);
+    const livroObjeto = JSON.parse(livroString);
+
+    console.log("Título após conversões:", livroObjeto.titulo);
+  </script>
+</body>
+</html>

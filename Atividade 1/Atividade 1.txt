@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--No formato Atividade 1.xml está abrindo normal no navegador, porém como não aceita esse formato para adicionar na atividade-->
+<!--fiz uma cópia em txt, mas ficou com erro de acentuação nesse novo formato-->
+<agenda>
+	<pessoa>
+		<nome>José Silva</nome>
+		<email>josesilva@gmail.com</email>
+		<dataNascimento>10/12/2000</dataNascimento>
+		<telefones>
+			<telefone>98123 4321</telefone>
+			<telefone>3223 3434</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Mônica Aparecida</nome>
+		<email>moaparecida@hotmail.com</email>
+		<dataNascimento>03/04/1998</dataNascimento>
+		<telefones>
+			<telefone>3225 5123</telefone>
+			<telefone>9999 2222</telefone>
+			<telefone>9834 9451</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Joaquim Gomes</nome>
+		<email>josesilva@gmail.com</email>
+		<dataNascimento>10/12/2000</dataNascimento>
+		<telefones>
+			<telefone>98123 4321</telefone>
+			<telefone>3223 3434</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>José Silva</nome>
+		<email>jgomes@yahoo.com.br</email>
+		<dataNascimento>25/08/1980</dataNascimento>
+		<telefones>
+			<telefone>3323 2242</telefone>
+			<telefone>98413 3242</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Ana Soares</nome>
+		<email>anasoares@outlook.com</email>
+		<dataNascimento>29/02/1990</dataNascimento>
+		<telefones>
+			<telefone>3234 2345</telefone>
+			<telefone>99841 9896</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Paulo Gustavo</nome>
+		<email>paulogustavo@gmail.com</email>
+		<dataNascimento>21/09/2002</dataNascimento>
+		<telefones>
+			<telefone>3276 6578</telefone>
+			<telefone>97898 1390</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Carlos Alfredo</nome>
+		<email>Calfredo@uol.com</email>
+		<dataNascimento>07/03/1987</dataNascimento>
+		<telefones>
+			<telefone>3134 7900</telefone>
+			<telefone>997101 9718</telefone>
+		</telefones>
+	</pessoa>
+	<pessoa>
+		<nome>Maria Sônia</nome>
+		<email>marsonia@outlook.com</email>
+		<dataNascimento>15/10/1972</dataNascimento>
+		<telefones>
+			<telefone>3511 9712</telefone>
+			<telefone>98123 9866</telefone>
+		</telefones>
+	</pessoa>
+</agenda>

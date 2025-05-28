@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregar Dados do Arquivo</title>
+</head>
+<body>
+    <h1>Exibir o conteúdo do arquivo dados.txt</h1>
+    <p>Resultado da requisição:</p>
+    <div id="resultado">Aguardando dados...</div>
+    <script >
+        function loadText() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "dados.txt", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById("resultado").textContent = xhr.responseText;
+                    } else {
+                        document.getElementById("resultado").textContent = "Erro ao carregar dados: Status " + xhr.status;
+                    }
+                }
+            };
+            xhr.send();
+        }
+        window.onload = loadText;
+    </script>
+</body>
+</html>

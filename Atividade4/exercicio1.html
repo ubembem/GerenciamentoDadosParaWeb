@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requisição AJAX</title>
+</head>
+<body>
+  <h1>Conteúdo do Arquivo</h1>
+  <div id="resultado">Aguardando dados...</div>
+
+  <script>
+    // Criar o objeto XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+
+    // Configurar a requisição GET
+    xhr.open("GET", "dados.txt", true);
+
+    // Definir o tratamento da resposta
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) { // Requisição concluída
+        if (xhr.status === 200) { // Sucesso
+          document.getElementById("resultado").innerText = xhr.responseText;
+        } else {
+          document.getElementById("resultado").innerText = 
+            "Erro: Não foi possível carregar o arquivo (Status: " + xhr.status + ")";
+        }
+      }
+    };
+
+    // Enviar a requisição
+    xhr.send();
+  </script>
+</body>
+</html>

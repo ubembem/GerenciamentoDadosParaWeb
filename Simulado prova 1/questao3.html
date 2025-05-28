@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filmes</title>
+</head>
+<body>
+    <h1>Acessando o Primeiro Diretor (DOM - firstChild, nodeValue)</h1>
+    <div id="primeiro-diretor"></div>
+  <script>
+        function loadXMLDoc() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "filmes.xml", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const xmlDoc = xhr.responseXML;
+                const primeiroFilme = xmlDoc.getElementsByTagName("filme")[0];
+                const diretor = primeiroFilme.getElementsByTagName("diretor")[0].firstChild.nodeValue;
+                document.getElementById("primeiro-diretor").textContent = `Diretor: ${diretor}`;
+            }
+        };
+        xhr.send();
+    }
+    window.onload = loadXMLDoc;
+  </script>
+</body>
+</html>
