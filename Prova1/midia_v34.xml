@@ -1,0 +1,62 @@
+<gerenciador_projetos_pessoais usuario="DevProdutivo" data_sincronizacao="2025-06-09T10:00:00Z" total_projetos_ativos="2">
+  <projeto id_projeto="PROJ_WEBSITE_CLIENTE" nome_projeto="Desenvolvimento Website Institucional - Cliente Acme Corp" data_criacao="2025-06-15">
+    <descricao_projeto>Criar um website responsivo e moderno para a Acme Corp, incluindo blog e formulário de contato.</descricao_projeto>
+    <data_inicio_prevista>2025-07-01</data_inicio_prevista>
+    <data_entrega_prevista>2025-09-30</data_entrega_prevista>
+    <status_projeto>Em Andamento</status_projeto> <prioridade_projeto>Alta</prioridade_projeto> <equipe>
+        <membro papel="Desenvolvedor Principal">DevProdutivo</membro>
+        <membro papel="Designer UX/UI">DesignerParceiro</membro>
+    </equipe>
+    <tarefas>
+      <tarefa id_tarefa="T001" responsavel="DevProdutivo" status_tarefa="Concluída" data_conclusao_real="2025-07-08">
+        <titulo_tarefa>Definir arquitetura e tecnologias do frontend</titulo_tarefa>
+        <prazo_tarefa>2025-07-10</prazo_tarefa>
+        <estimativa_horas>8</estimativa_horas>
+        <dependencias>
+            <depende_de_tarefa_id>Nenhuma</depende_de_tarefa_id>
+        </dependencias>
+        <notas>Pesquisar frameworks CSS e JS. Decidido por React + Tailwind.</notas>
+      </tarefa>
+      <tarefa id_tarefa="T002" responsavel="DesignerParceiro" status_tarefa="Em Andamento">
+        <titulo_tarefa>Criar layout e protótipos das páginas principais</titulo_tarefa>
+        <prazo_tarefa>2025-07-20</prazo_tarefa>
+        <estimativa_horas>24</estimativa_horas>
+        <progresso_percentual>60</progresso_percentual>
+        <notas>Foco na usabilidade e identidade visual do cliente. Feedback inicial positivo.</notas>
+      </tarefa>
+      <tarefa id_tarefa="T003" responsavel="DevProdutivo" status_tarefa="Pendente">
+        <titulo_tarefa>Desenvolver componentes React reutilizáveis</titulo_tarefa>
+        <prazo_tarefa>2025-08-15</prazo_tarefa>
+        <estimativa_horas>40</estimativa_horas>
+        <dependencias>
+            <depende_de_tarefa_id>T001</depende_de_tarefa_id>
+            <depende_de_tarefa_id>T002</depende_de_tarefa_id>
+        </dependencias>
+      </tarefa>
+    </tarefas>
+    <orcamento_cliente moeda="BRL" valor="8500.00" pago="parcial"/>
+    <riscos_identificados>
+        <risco probabilidade="Baixa" impacto="Alto">Atraso na entrega de conteúdo pelo cliente.</risco>
+    </riscos_identificados>
+  </projeto>
+  <projeto id_projeto="PROJ_APP_ESTUDO_IDIOMAS" nome_projeto="Aplicativo Mobile para Estudo de Idiomas" data_criacao="2025-08-01">
+    <descricao_projeto>Desenvolver um app Android/iOS para aprendizado de vocabulário e frases em inglês e espanhol.</descricao_projeto>
+    <data_inicio_prevista>2025-10-01</data_inicio_prevista>
+    <status_projeto>Planejamento</status_projeto>
+    <prioridade_projeto>Média</prioridade_projeto>
+    <tarefas>
+      <tarefa id_tarefa="T101" responsavel="DevProdutivo" status_tarefa="Pendente">
+        <titulo_tarefa>Estudar APIs de tradução e TTS (Text-to-Speech)</titulo_tarefa>
+        <estimativa_horas>16</estimativa_horas>
+      </tarefa>
+      <tarefa id_tarefa="T102" responsavel="DevProdutivo" status_tarefa="Pendente">
+        <titulo_tarefa>Definir escopo do MVP (Minimum Viable Product)</titulo_tarefa>
+        <estimativa_horas>8</estimativa_horas>
+      </tarefa>
+    </tarefas>
+    <tecnologias_planejadas>Flutter, Firebase, Google Cloud Translate API</tecnologias_planejadas>
+    <stakeholders>
+        <stakeholder nome="Investidor Anjo X" interesse="Retorno Financeiro"/>
+    </stakeholders>
+  </projeto>
+</gerenciador_projetos_pessoais>
