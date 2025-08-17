@@ -1,4 +1,4 @@
-package Prova 1;
+package Prova1;
 
 import jakarta.xml.bind.annotation.*;
 import java.util.List;
